@@ -87,6 +87,7 @@ validate_xkcd <- function(x) {
 #' @importFrom tools file_ext
 #' @importFrom png readPNG
 #' @importFrom jpeg readJPEG
+#' @importFrom graphics plot.new
 #' @importFrom grid grid.raster
 #'
 #' @exportS3Method
@@ -106,7 +107,7 @@ plot.xkcd <- function(x, ...) {
     p <- jpeg::readJPEG(tmp)
   }
 
-  plot.new()
+  graphics::plot.new()
   grid::grid.raster(p)
 }
 

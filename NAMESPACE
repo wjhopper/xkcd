@@ -2,6 +2,7 @@
 
 S3method(plot,xkcd)
 export(xkcd)
+importFrom(graphics,plot.new)
 importFrom(grid,grid.raster)
 importFrom(jpeg,readJPEG)
 importFrom(jsonlite,read_json)
