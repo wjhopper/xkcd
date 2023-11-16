@@ -48,7 +48,6 @@ plot(first_comic)
 ```
 
 ## Comic Data
-
 The metadata from all 2,850 xkcd comics (so far) is aggregated into the `xkcd_data` data set 
 
 ```{r}
