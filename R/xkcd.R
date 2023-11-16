@@ -81,6 +81,8 @@ validate_xkcd <- function(x) {
 #' this comic from the xkcd website and displays it in the currently active graphics device.
 #'
 #' @param x an [`xkcd`] object
+#' @param ... currently ignored
+#'
 #' @importFrom utils download.file
 #' @importFrom tools file_ext
 #' @importFrom png readPNG
@@ -88,7 +90,7 @@ validate_xkcd <- function(x) {
 #' @importFrom grid grid.raster
 #'
 #' @exportS3Method
-plot.xkcd <- function(x) {
+plot.xkcd <- function(x, ...) {
 
   img_type <- tools::file_ext(x$img)
 

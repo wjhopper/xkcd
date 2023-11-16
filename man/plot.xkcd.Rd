@@ -4,10 +4,12 @@
 \alias{plot.xkcd}
 \title{Visualize xkcd comics}
 \usage{
-\method{plot}{xkcd}(x)
+\method{plot}{xkcd}(x, ...)
 }
 \arguments{
 \item{x}{an \code{\link{xkcd}} object}
+
+\item{...}{currently ignored}
 }
 \description{
 Given an \code{\link{xkcd}} object, this \code{\link[base:plot]{base::plot}} method retrieves the image file associated with
