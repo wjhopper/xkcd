@@ -1,0 +1,69 @@
+---
+title: "xkcd"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{xkcd}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(xkcd)
+```
+
+The `xckd` package provides an R interface to retrieve data about [xkcd comics](https://xkcd.com/) from the xkcd website - and most importantly, view those comics in your plot window!
+
+## Browsing comics
+
+Given a comic number, the `xkcd()` function retrieves a JSON object with metadata about that comic.
+
+```{r example}
+library(xkcd)
+
+# Retrieve data about the first xkcd comic ever!
+first_comic <- xkcd(1)
+first_comic
+```
+
+The most useful thing you can do with these objects is plot them, which displays the comic image in your plot window.
+
+```{r}
+plot(first_comic)
+```
+
+## Comic Data
+The metadata from all 2,850 xkcd comics (so far) is aggregated into the `xkcd_data` data set 
+
+```{r}
+head(xkcd_data)
+```
+
+What day of the week are xkcd comics published on most frequently?
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+xkcd_data <- xkcd_data |> 
+  mutate(date = as.Date(paste(year, month, day, sep = "/")),
+         weekday = weekdays(date)
+         )
+
+xkcd_published <- xkcd_data |>
+  count(weekday)
+```
+
+```{r}
+ggplot(xkcd_published, aes(x = weekday, y = n)) +
+  geom_col()
+```
+
+Saturday is for ~~the boys~~ xkcd!
