@@ -83,8 +83,8 @@ validate_xkcd <- function(x) {
 #' @param x an [`xkcd`] object
 #' @param ... currently ignored
 #'
-#' @importFrom utils download.file
 #' @importFrom tools file_ext
+#' @importFrom httr GET
 #' @importFrom png readPNG
 #' @importFrom jpeg readJPEG
 #' @importFrom graphics plot.new
@@ -95,16 +95,12 @@ plot.xkcd <- function(x, ...) {
 
   img_type <- tools::file_ext(x$img)
 
-  tmp <- tempfile(pattern = "file",
-                  tmpdir = tempdir(),
-                  )
-
-  utils::download.file(x$img, destfile = tmp, mode = "wb")
+  tmp <- httr::GET(url = x$img)
 
   if (img_type == "png") {
-    p <- png::readPNG(tmp)
+    p <- png::readPNG(tmp$content)
   } else if (img_type == "jpg" || img_type == "jpeg") {
-    p <- jpeg::readJPEG(tmp)
+    p <- jpeg::readJPEG(tmp$content)
   }
 
   graphics::plot.new()
