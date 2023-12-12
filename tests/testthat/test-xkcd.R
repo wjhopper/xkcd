@@ -20,3 +20,12 @@ test_that("xkcd objects have class xkcd", {
  }
 )
 
+test_that("API key can be retrieved", {
+  if (Sys.getenv("GITHUB_ACTIONS") == "true") {
+    api_key <- Sys.getenv("API_KEY")
+  } else {
+    api_key <- readLines("API_KEY.txt")
+  }
+  expect_equal(api_key, "hello!")
+})
+
