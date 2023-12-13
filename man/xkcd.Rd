@@ -31,3 +31,9 @@ Note that many of these fields may be an empty string
 Given an xkcd comic number, this function retrieves a json object describing that comic from the
 xkcd website
 }
+\examples{
+\dontrun{
+(first_comic <- xkcd(1))
+}
+
+}

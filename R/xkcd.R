@@ -20,6 +20,11 @@
 #'
 #' Note that many of these fields may be an empty string
 #'
+#' @examples
+#' \dontrun{
+#' (first_comic <- xkcd(1))
+#' }
+#'
 #' @importFrom jsonlite read_json
 #' @export
 xkcd <- function(number) {
@@ -83,6 +88,11 @@ validate_xkcd <- function(x) {
 #' @param x an [`xkcd`] object
 #' @param ... currently ignored
 #'
+#' @examples
+#' \dontrun{
+#' first_comic <- xkcd(1)
+#' plot(first_comic)
+#' }
 #' @importFrom tools file_ext
 #' @importFrom httr GET
 #' @importFrom png readPNG
