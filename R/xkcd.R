@@ -4,9 +4,28 @@
 #' Given an xkcd comic number, this function retrieves a JSON object describing that comic from the official xkcd API.
 #'
 #' @importFrom jsonlite read_json
+#'
+#' @param number A scalar numeric vector identifying an xkcd comic by number.
+#'
+#' @return A list of class xkcd with the following elements
+#' * month: A scalar character vector identifying the month of the year the comic was published
+#' * num: A scalar numeric vector identifying the comic by number
+#' * link: A scalar character vector which links to relevant context, source information, or a large version of the comic image.
+#' * year
+#' * safe_title
+#' * transcript
+#' * alt
+#' * img
+#' * title
+#' * day
+#'
+#' Note that many of these elements may hold missing data
+#'
+#' @examples
+#' first_comic <- xkcd(1)
+#' print(first_comic)
+#'
 #' @export
-#'
-#'
 #'
 xkcd <- function(number) {
   url <- file.path("https://xkcd.com", number, "info.0.json")
@@ -57,25 +76,24 @@ validate_xkcd <- function(x) {
 }
 
 
-#' Visualize xkcd comics
+#' @title Visualize xkcd comics
 #'
+#' @description
 #' Given an [`xkcd`] object, this [`base::plot`] method retrieves the image file associated with
 #' this comic from the xkcd website and displays it in the currently active graphics device.
+#'
+#' @importFrom httr GET
+#' @importFrom png readPNG
+#' @importFrom jpeg readJPEG
+#' @importFrom grid grid.raster
+#' @importFrom graphics plot.new
 #'
 #' @param x an [`xkcd`] object
 #' @param ... currently ignored
 #'
 #' @examples
-#' \dontrun{
 #' first_comic <- xkcd(1)
 #' plot(first_comic)
-#' }
-#' @importFrom tools file_ext
-#' @importFrom httr GET
-#' @importFrom png readPNG
-#' @importFrom jpeg readJPEG
-#' @importFrom graphics plot.new
-#' @importFrom grid grid.raster
 #'
 #' @exportS3Method
 plot.xkcd <- function(x, ...) {
