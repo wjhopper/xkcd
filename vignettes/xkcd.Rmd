@@ -1,0 +1,62 @@
+---
+title: "Using the xkcd package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the xkcd package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Browsing xkcd comics 
+
+The main function of the xkcd package is to let you browse xkcd comics from with in R. Let's see how we can accomplish this. First, load the `xkcd` package.
+
+```{r setup}
+library(xkcd)
+```
+
+Then, use the `xkcd()` function to retreive information about a particular comics. We'll retrieve information about the very first xkcd comics, so we'll set the `number` argument equal to 1
+
+```{r}
+comic <- xkcd(number = 1)
+```
+
+The objects returned by the `xkcd()` function are special lists that belong to the xkcd class. This is useful because they can be provided directly to the `plot()` function in order to display the comic
+
+```{r}
+plot(comic)
+```
+
+## Comic Data
+The xkcd package also comes with a built-in data set describing the first 10 xkcd comics ever published
+
+```{r}
+xkcd::xkcd_data
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
